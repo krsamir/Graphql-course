@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend app",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "samir",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.10.1",
+    "dotenv": "^16.0.1",
+    "graphql": "^16.5.0"
+  }
+}
