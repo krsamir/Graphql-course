@@ -17,6 +17,9 @@ const typeDefs = gql`
     day: String
     format: String
     track: String
+      @deprecated(
+        reason: "Too many sessions do not fit in a single track, we will be migrating to a tags based system in the future"
+      )
     level: String
   }
 `;
@@ -34,3 +37,8 @@ server
 
 // Resolver: A function that is responsible for populating the data for a single field in your schema
 //Resolver map:  A big object that holds all of those Type -> Field -> Resolver Functions
+
+// Field level Directives
+// @include(if: Boolean!)
+// @skip(if: Boolean!
+// @deprecated (reason: String)
