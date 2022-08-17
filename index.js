@@ -5,7 +5,18 @@ config();
 
 const typeDefs = gql`
   type Query {
-    sessions: [Session]
+    sessions(
+      id: ID
+      title: String
+      description: String
+      startsAt: String
+      endsAt: String
+      room: String
+      day: String
+      format: String
+      track: String
+      level: String
+    ): [Session]
     sessionById(id: ID): Session
   }
   type Session {
@@ -28,7 +39,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     sessions: (parent, args, { dataSources }, info) =>
-      dataSources.sessionAPI.getSessions(),
+      dataSources.sessionAPI.getSessions(args),
     sessionById: (parent, { id }, { dataSources }, info) => {
       return dataSources.sessionAPI.getSessionById(id);
     },
