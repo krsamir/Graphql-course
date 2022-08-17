@@ -1,6 +1,6 @@
 const { config } = require("dotenv");
 const { ApolloServer, gql } = require("apollo-server");
-const sessions = require("./data/sessions.json");
+const sessionAPI = require("./datasources/sessions");
 config();
 
 const typeDefs = gql`
@@ -26,11 +26,13 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    sessions: () => sessions,
+    sessions: (parent, args, { dataSources }, info) =>
+      dataSources.sessionAPI.getSessions(),
   },
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const dataSources = () => ({ sessionAPI: new sessionAPI() });
+const server = new ApolloServer({ typeDefs, resolvers, dataSources });
 server
   .listen({ port: process.env.PORT || 5000 })
   .then(({ url }) => console.log(`App is running on ${url}`));
