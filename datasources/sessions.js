@@ -1,7 +1,7 @@
-const sessions = require("../data/sessions.json");
-const { DataSource } = require("apollo-datasource");
-const _ = require("lodash");
-const { parse } = require("dotenv");
+const sessions = require('../data/sessions.json');
+const { DataSource } = require('apollo-datasource');
+const _ = require('lodash');
+
 class sessionAPI extends DataSource {
   constructor() {
     super();

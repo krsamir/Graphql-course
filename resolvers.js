@@ -1,5 +1,3 @@
-const { gql } = require("apollo-server");
-
 module.exports = {
   Query: {
     sessions: (parent, args, { dataSources }, info) =>
