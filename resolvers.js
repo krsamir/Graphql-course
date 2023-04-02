@@ -1,9 +1,14 @@
+const Query = require("./resolvers/query");
+const Session = require("./resolvers/session");
+const Mutation = require("./resolvers/Mutation");
+
 module.exports = {
-  Query: {
-    sessions: (parent, args, { dataSources }, info) =>
-      dataSources.sessionAPI.getSessions(args),
-    sessionById: (parent, { id }, { dataSources }, info) => {
-      return dataSources.sessionAPI.getSessionById(id);
-    },
-  },
+  Query,
+  Session,
+  Mutation,
 };
+
+/**
+ * schema and resolver structure should match
+ * we are building resolver for type session
+ */

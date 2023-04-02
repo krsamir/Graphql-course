@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server');
+const { gql } = require("apollo-server");
 
 module.exports = gql`
   type Query {
@@ -15,6 +15,19 @@ module.exports = gql`
       level: String
     ): [Session]
     sessionById(id: ID): Session
+    speakers: [Speaker]
+    speakerById(id: ID): Speaker
+  }
+
+  type Mutation {
+    toggleFavoriteSession(id: ID): Session
+  }
+
+  type Speaker {
+    id: ID!
+    bio: String
+    name: String
+    sessions: [Session]
   }
   type Session {
     id: ID!
@@ -30,5 +43,7 @@ module.exports = gql`
         reason: "Too many sessions do not fit in a single track, we will be migrating to a tags based system in the future"
       )
     level: String
+    favorite: Boolean
+    speakers: [Speaker]
   }
 `;

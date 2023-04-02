@@ -1,11 +1,15 @@
-const { config } = require('dotenv');
-const { ApolloServer, gql } = require('apollo-server');
-const sessionAPI = require('./datasources/sessions');
+const { config } = require("dotenv");
+const { ApolloServer, gql } = require("apollo-server");
+const sessionAPI = require("./datasources/sessions");
+const SpeakerAPI = require("./datasources/speakers");
 config();
-const typeDefs = require('./schema.js');
-const resolvers = require('./resolvers.js');
+const typeDefs = require("./schema.js");
+const resolvers = require("./resolvers.js");
 
-const dataSources = () => ({ sessionAPI: new sessionAPI() });
+const dataSources = () => ({
+  sessionAPI: new sessionAPI(),
+  speakerAPI: new SpeakerAPI(),
+});
 const server = new ApolloServer({
   typeDefs,
   resolvers,
