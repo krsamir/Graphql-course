@@ -21,6 +21,7 @@ module.exports = gql`
 
   type Mutation {
     toggleFavoriteSession(id: ID): Session
+    addNewSession(session: sessionInput): Session
   }
 
   type Speaker {
@@ -28,6 +29,21 @@ module.exports = gql`
     bio: String
     name: String
     sessions: [Session]
+  }
+  input sessionInput {
+    title: String!
+    description: String
+    startsAt: String
+    endsAt: String
+    room: String
+    day: String
+    format: String
+    track: String
+      @deprecated(
+        reason: "Too many sessions do not fit in a single track, we will be migrating to a tags based system in the future"
+      )
+    level: String
+    favorite: Boolean
   }
   type Session {
     id: ID!
