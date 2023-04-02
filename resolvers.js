@@ -6,6 +6,11 @@ module.exports = {
   Query,
   Session,
   Mutation,
+  Room: {
+    EUROPA: "Europa",
+    SOL: "Sol",
+    SATURN: "Saturn",
+  },
 };
 
 /**
