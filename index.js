@@ -1,5 +1,5 @@
 const { config } = require("dotenv");
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer, gql, ApolloError } = require("apollo-server");
 const sessionAPI = require("./datasources/sessions");
 const SpeakerAPI = require("./datasources/speakers");
 config();
@@ -15,6 +15,15 @@ const server = new ApolloServer({
   resolvers,
   dataSources,
   introspection: true,
+  debug: false,
+  formatError: (err) => {
+    if (err.extensions.code == `INTERNAL_SERVER_ERROR`) {
+      return new ApolloError("Having some trouble", "SERVER_CRASHED", {
+        token: "uniquetoken",
+      });
+    }
+    return err;
+  },
 });
 
 server
